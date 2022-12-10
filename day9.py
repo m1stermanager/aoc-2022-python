@@ -108,10 +108,6 @@ def part2(lines: List[str]) -> int:
             (tail_x, tail_y) = knots[-1]
             tail_visits.add(f"{tail_x},{tail_y}")
             knots = new_knots
-            # print(f"({head_x}, {head_y})")
-            # print(f"({tail_x}, {tail_y})")
-            # print("----------------------")
-            # # input()
 
     return len(tail_visits)
 
