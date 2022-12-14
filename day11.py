@@ -73,17 +73,19 @@ def part2(lines: List[str]) -> int:
     monkeys: List[Monkey] = []
     compressor = 1000000000
 
+    mod = 1
     for i in range(0, len(lines), 7):
         m = parse_monkey(lines[i:i+7], compressor)
         monkeys.append(m)
+        mod *= m.test_num
 
-    for _ in range(0, 20):
+    for _ in range(0, 10000):
         for monkey in monkeys:
             for item in monkey.items:
                 monkey.inspections = monkey.inspections + 1
 
                 worry = monkey.op(item)
-                worry = worry//3
+                worry = worry % mod
                 if (worry % monkey.test_num) == 0:
                     monkeys[monkey.test_true].items.append(worry)
                 else:
@@ -96,7 +98,7 @@ def part2(lines: List[str]) -> int:
 
 def main():
     lines = None
-    with open("input/day11e.txt", "r") as f:
+    with open("input/day11.txt", "r") as f:
         lines = f.readlines()
 
     lines = [ l.strip() for l in lines ]
